@@ -20,11 +20,11 @@ mvn package
 
 1. 编辑 application.yml 配置文件，其中
 
-   ```
-   server.port 配置服务端口
-   redmine.issue.url 配置 redmine issue restAPI 地址
-   redmine.authKey 配置 redmine 管理员密钥
-   ```
+```
+server.port 配置服务端口
+redmine.issue.url 配置 redmine issue restAPI 地址
+redmine.authKey 配置 redmine 管理员密钥
+```
 
 2. 进入 release 目录，执行：
 
