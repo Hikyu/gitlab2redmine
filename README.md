@@ -2,8 +2,9 @@
 
 [![GitHub license](https://img.shields.io/github/license/Hikyu/gitlab2redmine.svg)](https://github.com/Hikyu/gitlab2redmine/blob/master/LICENSE)
 
-
 gitlab webhooks 服务端，监听 gitlab push 事件，更新相关的内容到 redmine 对应 issue 的 notes。
+
+![](img/demo.png)
 
 ## Install
 
@@ -36,15 +37,21 @@ nohup java -jar gitlab2redmine.jar &
 
 ### gitlab
 
-打开 gitlab 项目，settings->Integrations， URL 文本框输入 gitlab2redmine 服务地址，比如：http://192.168.1.70:1219/gitlab/post
+1. 使用管理员账户登录gitlab，点击左侧列表 settings，页面最下方 Outbound requests，勾选 `Allow requests to the local network from hooks and services` 选项。
 
-去掉勾选 `Enable SSL verification`
+2. 打开 gitlab 项目，settings->Integrations， URL 文本框输入 gitlab2redmine 服务地址，比如：http://192.168.1.70:1219/gitlab/post
 
-点击 `Add webhook`
+   去掉勾选 `Enable SSL verification`
+
+   点击 `Add webhook`
+
+![](img/gitlab.png)
 
 ### redmine 
 
 登录管理员账户，管理->配置->API，勾选 `启用REST web service`、`启用JSONP支持`
+
+![](img/redmine.png)
 
 ## Built With
 
