@@ -1,0 +1,35 @@
+spring:
+  profiles: 
+    active: dev
+
+redmine:
+  domain: http://192.168.101.35
+  authKey: 2afa8fcebb3d4dc4153bd8a20fae488c47237674
+  issue:
+    url: http://192.168.101.35/issues/%s.json
+  http:
+    mediaType: application/json; charset=utf-8
+    header:
+      apiKey: X-Redmine-API-Key
+      switchUser: X-Redmine-Switch-User
+
+gitlab:
+  http:
+    header:
+      eventType: X-Gitlab-Event
+---
+# 开发环境配置
+spring: 
+  profiles: dev  
+  
+server: 
+  port: 1219  
+
+---
+# 生产环境配置
+spring: 
+  profiles: pro  
+  
+server: 
+  port: 80    
+  
