@@ -5,9 +5,7 @@
  * @author: Yukai  
  * @date: 2018年5月17日 上午11:21:19
  */
-package com.oscar.gitlabEventCenter.service.handler;
-
-import org.springframework.beans.factory.annotation.Value;
+package com.oscar.gitlabEventCenter.web.service.handler;
 
 import net.sf.json.JSONObject;
 

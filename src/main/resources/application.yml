@@ -20,7 +20,20 @@ gitlab:
 ---
 # 开发环境配置
 spring: 
-  profiles: dev  
+  profiles: dev
+  datasource:
+    driver-class-name: com.oscar.Driver
+    url: jdbc:oscar://192.168.1.70:2003/osrdb
+    username: sysdba
+    password: szoscar55
+  jpa:
+    database-platform: org.hibernate.dialect.OscarDialect
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+  jackson:
+    serialization:
+      indent_output: true
   
 server: 
   port: 1219  

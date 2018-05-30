@@ -5,7 +5,7 @@
  * @author: Yukai  
  * @date: 2018年5月17日 下午3:23:13
  */
-package com.oscar.gitlabEventCenter.service.handler;
+package com.oscar.gitlabEventCenter.web.service.handler;
 
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.oscar.gitlabEventCenter.common.exception.HttpRequestFailed;
 import com.oscar.gitlabEventCenter.common.utils.Config;
@@ -27,10 +28,12 @@ import okhttp3.Response;
 
 /**
  * @ClassName: GitlabPush2RedmineHandler
- * @Description: TODO
+ * @Description: 处理 gitlab push 事件，
+ *               匹配 push 信息中 #issueid，将格式化后的消息推送到相应的 redmine issue notes
  * @author Yukai
  * @data 2018年5月17日 下午3:23:13
  */
+@Component
 public class GitlabPush2RedmineHandler extends Gitlab2RedmineHandler {
     private String handlerID = "GitlabMr2RedmineHandler";
     private static Logger logger = LoggerFactory.getLogger(GitlabPush2RedmineHandler.class);
@@ -113,10 +116,10 @@ public class GitlabPush2RedmineHandler extends Gitlab2RedmineHandler {
     @Override
     public void handle(JSONObject msg) {
         String ref = msg.getString("ref");
-        if (!ref.endsWith("master")) {
-            logger.info("Just Ignore branch {}", ref);
-            return;
-        }
+//        if (!ref.endsWith("master")) {
+//            logger.info("Just Ignore branch {}", ref);
+//            return;
+//        }
         String checkoutSha = msg.getString("checkout_sha");
         JSONArray commits = msg.getJSONArray("commits");
         String description = "";
@@ -159,7 +162,7 @@ public class GitlabPush2RedmineHandler extends Gitlab2RedmineHandler {
             Request request = buildRequest(issueID, userName, issue.toString());
             Response response = HttpUtils.sendRequestSync(request);
             if (!response.isSuccessful()) {
-                throw new HttpRequestFailed(String.format("Http request to %s failed, code: {}, response: body {}",
+                throw new HttpRequestFailed(String.format("Http request to %s failed, code: %s, response: body %s",
                         request.url().toString(), response.code(), response.body()));
             }
             logger.info("Update issue {} successful", issueID);

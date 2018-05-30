@@ -5,13 +5,14 @@
  * @author: Yukai  
  * @date: 2018年5月17日 下午3:13:10
  */
-package com.oscar.gitlabEventCenter.service.handler;
+package com.oscar.gitlabEventCenter.web.service.handler;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.oscar.gitlabEventCenter.common.exception.HttpRequestFailed;
 import com.oscar.gitlabEventCenter.common.utils.Config;
@@ -25,10 +26,12 @@ import okhttp3.Response;
 
 /**
  * @ClassName: GitlabMr2RedmineHandler
- * @Description:
+ * @Description: 处理 gitlab merge request 事件，解析merge request
+ *               匹配 merge request 信息中 #issueid，将格式化后的消息推送到相应的 redmine issue notes
  * @author Yukai
  * @data 2018年5月17日 下午3:13:10
  */
+@Component
 public class GitlabMr2RedmineHandler extends Gitlab2RedmineHandler {
     private String handlerID = "GitlabMr2RedmineHandler";
     private static Logger logger = LoggerFactory.getLogger(GitlabMr2RedmineHandler.class);
@@ -178,6 +181,7 @@ public class GitlabMr2RedmineHandler extends Gitlab2RedmineHandler {
      */
     @Override
     public void handle(JSONObject msg) {
+          // 与 push 事件有重复，暂时注掉
 //        JSONObject user = msg.getJSONObject("user");
 //        String name = user.getString("name");
 //        String userName = user.getString("username");

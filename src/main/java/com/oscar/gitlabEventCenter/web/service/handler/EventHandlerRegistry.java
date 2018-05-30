@@ -5,7 +5,7 @@
  * @author: Yukai  
  * @date: 2018年5月17日 上午11:16:33
  */
-package com.oscar.gitlabEventCenter.service.handler;
+package com.oscar.gitlabEventCenter.web.service.handler;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +16,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.oscar.gitlabEventCenter.controller.EventDispatcher.EventType;
+import com.oscar.gitlabEventCenter.web.controller.EventDispatcher.EventType;
 
 /**
  * @ClassName: EventHandlerRegistry

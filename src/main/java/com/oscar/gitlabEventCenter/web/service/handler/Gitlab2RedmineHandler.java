@@ -5,7 +5,7 @@
  * @author: Yukai  
  * @date: 2018年5月18日 上午11:05:17
  */
-package com.oscar.gitlabEventCenter.service.handler;
+package com.oscar.gitlabEventCenter.web.service.handler;
 
 import com.oscar.gitlabEventCenter.common.utils.Config;
 

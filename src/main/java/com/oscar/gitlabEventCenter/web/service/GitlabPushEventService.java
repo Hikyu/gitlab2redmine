@@ -5,7 +5,7 @@
  * @author: Yukai  
  * @date: 2018年5月17日 上午10:03:11
  */
-package com.oscar.gitlabEventCenter.service;
+package com.oscar.gitlabEventCenter.web.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +13,11 @@ import java.util.concurrent.Future;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-import com.oscar.gitlabEventCenter.controller.EventDispatcher.EventType;
-import com.oscar.gitlabEventCenter.service.handler.BaseEventHandler;
-import com.oscar.gitlabEventCenter.service.handler.EventHandlerRegistry;
+import com.oscar.gitlabEventCenter.web.controller.EventDispatcher.EventType;
+import com.oscar.gitlabEventCenter.web.service.handler.BaseEventHandler;
+import com.oscar.gitlabEventCenter.web.service.handler.EventHandlerRegistry;
 
 import net.sf.json.JSONObject;
 
@@ -26,6 +27,7 @@ import net.sf.json.JSONObject;
  * @author Yukai
  * @data 2018年5月17日 上午10:03:11
  */
+@Service
 public class GitlabPushEventService extends BaseEventService {
     private static Logger logger = LoggerFactory.getLogger(GitlabPushEventService.class);
 

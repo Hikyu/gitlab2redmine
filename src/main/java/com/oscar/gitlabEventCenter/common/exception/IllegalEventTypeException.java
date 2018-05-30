@@ -13,7 +13,7 @@ package com.oscar.gitlabEventCenter.common.exception;
  * @author Yukai
  * @data 2018年5月17日 上午10:13:45
  */
-public class IllegalEventTypeException extends RuntimeException{
+public class IllegalEventTypeException extends IllegalRequestException{
     public IllegalEventTypeException(String msg) {
         super(msg);
     }

@@ -5,14 +5,16 @@
  * @author: Yukai  
  * @date: 2018年5月15日 下午5:00:07
  */
-package com.oscar.gitlabEventCenter.service;
+package com.oscar.gitlabEventCenter.web.service;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import org.springframework.stereotype.Service;
+
 import com.oscar.gitlabEventCenter.common.utils.Config;
-import com.oscar.gitlabEventCenter.service.handler.BaseEventHandler;
+import com.oscar.gitlabEventCenter.web.service.handler.BaseEventHandler;
 
 import net.sf.json.JSONObject;
 
@@ -22,6 +24,7 @@ import net.sf.json.JSONObject;
  * @author Yukai
  * @data 2018年5月15日 下午5:00:07
  */
+@Service
 public abstract class BaseEventService {
     private static ExecutorService executorService;
 
