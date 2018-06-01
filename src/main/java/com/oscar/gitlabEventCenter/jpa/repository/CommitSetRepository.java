@@ -8,8 +8,6 @@
  */
 package com.oscar.gitlabEventCenter.jpa.repository;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -23,5 +21,5 @@ import com.oscar.gitlabEventCenter.jpa.entity.CommitSet;
  * @data 2018年5月24日 下午2:39:31
  */
 public interface CommitSetRepository extends PagingAndSortingRepository<CommitSet, Long> {
-    Page<CommitSet> findByIssueID(long issueID, Pageable pageable);
+    Page<CommitSet> findByIssueId(long issueID, Pageable pageable);
 }

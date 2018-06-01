@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * @ClassName: Commit
@@ -26,10 +27,12 @@ import javax.persistence.Table;
  * @data 2018年5月23日 下午4:21:15
  */
 @Entity
-@Table(indexes = { 
-        @Index(name = "idx_issueID", columnList = "issueID", unique = false)
-})
-
+@Table(
+indexes = { 
+    @Index(name = "idx_issueID", columnList = "issueID", unique = false)
+},
+uniqueConstraints = @UniqueConstraint(columnNames={"issueId", "commitUrl", "projectUrl"})
+)
 public class CommitSet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="commitsetID")
@@ -48,8 +51,6 @@ public class CommitSet {
     @Column(nullable=false)
     private String commitUrl;
     @Column(nullable=false)
-    private String commitRef;
-    @Column(nullable=false)
     private String projectName;
     @Column(nullable=false)
     private String projectUrl;
@@ -59,7 +60,6 @@ public class CommitSet {
     private CommitSet(CommitSetBuilder builder) {
         this.author = builder.author;
         this.commitId = builder.commitID;
-        this.commitRef = builder.commitRef;
         this.commitUrl = builder.commitUrl;
         this.issueId = builder.issueID;
         this.message = builder.message;
@@ -92,10 +92,6 @@ public class CommitSet {
         return commitUrl;
     }
 
-    public String getCommitRef() {
-        return commitRef;
-    }
-
     public String getProjectName() {
         return projectName;
     }
@@ -110,11 +106,10 @@ public class CommitSet {
 
     @Override
     public String toString() {
-        return "CommitSet [id=" + id + ", issueID=" + issueId + ", commitID=" + commitId + ", author=" + author
-                + ", message=" + message + ", timestamp=" + timestamp + ", commitUrl=" + commitUrl + ", commitRef="
-                + commitRef + ", projectName=" + projectName + ", projectUrl=" + projectUrl + "]";
+        return "CommitSet [id=" + id + ", issueId=" + issueId + ", commitId=" + commitId + ", author=" + author
+                + ", message=" + message + ", timestamp=" + timestamp + ", commitUrl=" + commitUrl + ", projectName="
+                + projectName + ", projectUrl=" + projectUrl + "]";
     }
-
 
     public static class CommitSetBuilder {
         private long issueID;
@@ -123,7 +118,6 @@ public class CommitSet {
         private String message;
         private Date timestamp;
         private String commitUrl;
-        private String commitRef;
         private String projectName;
         private String projectUrl;
         
@@ -151,11 +145,6 @@ public class CommitSet {
             return this;
         }
         
-        public CommitSetBuilder commitRef(String commitRef) {
-            this.commitRef = commitRef;
-            return this;
-        }
-
         public CommitSetBuilder projectName(String projectName) {
             this.projectName = projectName;
             return this;
@@ -172,7 +161,7 @@ public class CommitSet {
         }
         
         public CommitSet build() {
-            if (this.author == null || this.commitRef == null || this.commitUrl == null || 
+            if (this.author == null || this.commitUrl == null || 
                     this.projectName == null || this.author ==null || this.projectUrl == null) {
                 throw new IllegalArgumentException("Missing necessary parameters to build commitset.");
             }

@@ -25,6 +25,12 @@ public class Config {
     public static String REDMINE_SWITCHUSER_HEADER;
     public static String REDMINE_ISSUES_URL;
     public static String REDMINE_MEDIATYPE;
+    
+    public static String GITLAB_AUTHKEY;
+    public static String GITLAB_GROUPS_URL;
+    public static String GITLAB_GROUP_PROJECTS_URL;
+    public static String GITLAB_PROJECTS_COMMITS_URL;
+    public static String GITLAB_PROJECT_URL;
 
     @Value("${redmine.domain}")
     public void setRedmineDomain(String domain) {
@@ -55,4 +61,30 @@ public class Config {
     public void setRedmineIssueUrl(String url) {
         REDMINE_ISSUES_URL = url;
     }
+    
+    @Value("${gitlab.groups.url}")
+    public void setGitlabGroupsUrl(String url) {
+        GITLAB_GROUPS_URL = url;
+    }
+    
+    @Value("${gitlab.groups.projects.url}")
+    public void setGitlabGroupProjectsUrl(String url) {
+        GITLAB_GROUP_PROJECTS_URL = url;
+    }
+    
+    @Value("${gitlab.authKey}")
+    public void setGitlabAuthkey(String authKey) {
+        GITLAB_AUTHKEY = authKey;
+    }
+    
+    @Value("${gitlab.projects.commits.url}")
+    public void setGitlabProjectsCommitsUrl(String url) {
+        GITLAB_PROJECTS_COMMITS_URL= url;
+    } 
+    
+    @Value("${gitlab.projects.project.url}")
+    public void setGitlabProjectUrl(String url) {
+        GITLAB_PROJECT_URL= url;
+    } 
+    
 }

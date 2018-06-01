@@ -6,9 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,7 +15,6 @@ import com.oscar.gitlabEventCenter.web.service.handler.EventHandlerRegistry;
 import com.oscar.gitlabEventCenter.web.service.handler.GitlabPush2DBHandler;
 
 @Configuration
-@EnableAutoConfiguration
 @ComponentScan
 @SpringBootApplication
 public class Application {
@@ -26,7 +23,7 @@ public class Application {
     private GitlabPush2DBHandler gitlabPush2DBHandler;
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-        // 注册事件处理器
+        logger.info(">>>>>>>>> server start >>>>>>>>>");
     }
     
     @PostConstruct

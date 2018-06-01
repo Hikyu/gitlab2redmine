@@ -14,6 +14,16 @@ redmine:
       switchUser: X-Redmine-Switch-User
 
 gitlab:
+  authKey: XMLEr8WHVq8W_2ECrHw3
+  groups:
+    url: http://192.168.101.120/api/v4/groups
+    projects:
+      url: http://192.168.101.120/api/v4/groups/%s/projects
+  projects:
+    project:
+      url: http://192.168.101.120/api/v4/projects/%s
+    commits:
+      url: http://192.168.101.120/api/v4/projects/%s/repository/commits
   http:
     header:
       eventType: X-Gitlab-Event
@@ -30,7 +40,7 @@ spring:
     database-platform: org.hibernate.dialect.OscarDialect
     hibernate:
       ddl-auto: create
-    show-sql: false
+    show-sql: true
   jackson:
     serialization:
       indent_output: true

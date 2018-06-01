@@ -36,9 +36,9 @@ public class RedmineCommitsetService {
     private CommitSetRepository repository;
 
     public Page<CommitSet> getCommitsetByIssueID(long issueID, int page, int size) {
-        Sort sort = new Sort(Direction.DESC, "timestamp");
+        Sort sort = new Sort(Direction.ASC, "timestamp");
         Pageable pageable = PageRequest.of(page, size, sort);
-        Page<CommitSet> commitsets = repository.findByIssueID(issueID, pageable);
+        Page<CommitSet> commitsets = repository.findByIssueId(issueID, pageable);
         return commitsets;
     }
 }

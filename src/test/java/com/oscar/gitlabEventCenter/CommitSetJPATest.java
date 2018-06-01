@@ -45,7 +45,6 @@ public class CommitSetJPATest {
     public void setUp() {
         CommitSetBuilder builder = new CommitSetBuilder(1234, "eevvvvveefsdfafdedafda");
         CommitSet commitSet = builder.author("yukai")
-               .commitRef("master")
                .commitUrl("http://yukai.space")
                .message("test")
                .projectName("test")
@@ -54,7 +53,6 @@ public class CommitSetJPATest {
         
         builder = new CommitSetBuilder(2345, "eeeeeefsdfafdedafda");
         commitSet = builder.author("yukai")
-               .commitRef("master")
                .commitUrl("http://yukai.space")
                .message("test")
                .projectName("test")

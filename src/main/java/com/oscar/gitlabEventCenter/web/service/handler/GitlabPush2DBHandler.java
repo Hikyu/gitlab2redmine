@@ -120,7 +120,6 @@ public class GitlabPush2DBHandler implements BaseEventHandler {
      */
     @Override
     public void handle(JSONObject msg) {
-        String commitRef = msg.getString("ref");
         String commitID = msg.getString("checkout_sha");
         JSONArray commits = msg.getJSONArray("commits");
         String message = "";
@@ -158,7 +157,6 @@ public class GitlabPush2DBHandler implements BaseEventHandler {
             for (String issueID : issueIDList) {
                 CommitSetBuilder builder = new CommitSetBuilder(Long.valueOf(issueID), commitID);
                 CommitSet commitset = builder.author(author)
-                       .commitRef(commitRef)
                        .commitUrl(commitUrl)
                        .message(message)
                        .projectName(projectName)
