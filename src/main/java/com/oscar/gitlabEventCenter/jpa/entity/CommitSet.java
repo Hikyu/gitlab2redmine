@@ -1,5 +1,4 @@
 /**
- * Copyright © 2018天津神舟通用数据技术有限公司. All rights reserved.
  * @Title: Commit.java
  * @Prject: gitlabEventCenter
  * @Package: com.oscar.gitlabEventCenter.model
