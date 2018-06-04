@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,7 @@ import com.oscar.gitlabEventCenter.web.service.RedmineCommitsetService;
  * @data 2018年5月23日 下午3:05:37
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/redmine")
 public class RedmineRequestController {
     private static Logger logger = LoggerFactory.getLogger(RedmineRequestController.class);
