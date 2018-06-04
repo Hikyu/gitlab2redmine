@@ -33,9 +33,6 @@ public class EventDispatcher {
     GitlabMrEventService gitlabMrEventService;
     @Autowired
     GitlabPushEventService gitlabPushEventService;
-    
-    @Autowired
-    private ApplicationContext context;
 
     public enum EventType {
         MERGE_REQUEST("Merge Request Hook"), PUSH("Push Hook"), UNDEFINED("");

@@ -1,6 +1,6 @@
 spring:
   profiles: 
-    active: dev
+    active: pro
 
 redmine:
   domain: http://192.168.101.35
@@ -40,7 +40,7 @@ spring:
     database-platform: org.hibernate.dialect.OscarDialect
     hibernate:
       ddl-auto: create
-    show-sql: true
+    show-sql: false
   jackson:
     serialization:
       indent_output: true
@@ -52,7 +52,20 @@ server:
 # 生产环境配置
 spring: 
   profiles: pro  
+  datasource:
+    driver-class-name: com.oscar.Driver
+    url: jdbc:oscar://192.168.1.70:2003/osrdb
+    username: sysdba
+    password: szoscar55
+  jpa:
+    database-platform: org.hibernate.dialect.OscarDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  jackson:
+    serialization:
+      indent_output: true
   
 server: 
-  port: 80    
+  port: 1219    
   

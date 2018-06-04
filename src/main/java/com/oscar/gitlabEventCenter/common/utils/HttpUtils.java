@@ -47,4 +47,14 @@ public class HttpUtils {
         }
     }
     
+    public static String getResponseBody(Response response) throws IOException {
+        String res = response.body().string();
+        if (!response.isSuccessful()) {
+            Request request = response.request();
+            throw new HttpRequestFailed(String.format("Http request to %s failed, code: %s, response: body %s",
+                    request.url().toString(), response.code(), res));
+        }
+        return res;
+    }
+    
 }
