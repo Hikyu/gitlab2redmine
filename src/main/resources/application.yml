@@ -61,11 +61,11 @@ spring:
     database-platform: org.hibernate.dialect.OscarDialect
     hibernate:
       ddl-auto: update
-    show-sql: false
+    show-sql: true
   jackson:
     serialization:
       indent_output: true
   
 server: 
-  port: 1219    
+  port: 1219
   
