@@ -36,7 +36,6 @@ public class Application {
 //      EventHandlerRegistry.instance.registerEventHandler(EventType.MERGE_REQUEST, new GitlabMr2RedmineHandler());
 //      EventHandlerRegistry.instance.registerEventHandler(EventType.PUSH, new GitlabPush2RedmineHandler());
         EventHandlerRegistry.instance.registerEventHandler(EventType.PUSH, gitlabPush2DBHandler);
-//        EventHandlerRegistry.instance.registerEventHandler(EventType.PUSH, gitlabPush2RedmineHandler);
     }
     
 }

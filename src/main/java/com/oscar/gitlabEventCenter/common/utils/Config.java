@@ -7,6 +7,9 @@
  */
 package com.oscar.gitlabEventCenter.common.utils;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +34,9 @@ public class Config {
     public static String GITLAB_GROUP_PROJECTS_URL;
     public static String GITLAB_PROJECTS_COMMITS_URL;
     public static String GITLAB_PROJECT_URL;
+    
+    /* 组内项目ID列表  主要用来排除fork项目  */
+    private static Set<Integer> groupProjectIds = new HashSet<>();
 
     @Value("${redmine.domain}")
     public void setRedmineDomain(String domain) {
@@ -85,6 +91,19 @@ public class Config {
     @Value("${gitlab.projects.project.url}")
     public void setGitlabProjectUrl(String url) {
         GITLAB_PROJECT_URL= url;
-    } 
+    }
+
+    public static void setGroupProjectIds(Set<Integer> groupProjectIds) {
+        Config.groupProjectIds = groupProjectIds;
+    }
+    
+    /**
+     * 判断一个项目是否是fork项目
+     * 判断方法很简单，如果一个项目不在群组之内，那么这个项目就算是fork项目
+     * @return
+     */
+    public static boolean isForkProject(int projectId) {
+       return !groupProjectIds.contains(projectId);
+    }
     
 }

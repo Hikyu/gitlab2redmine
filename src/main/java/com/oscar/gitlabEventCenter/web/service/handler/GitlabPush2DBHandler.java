@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.oscar.gitlabEventCenter.common.utils.Config;
 import com.oscar.gitlabEventCenter.jpa.entity.CommitSet;
 import com.oscar.gitlabEventCenter.jpa.entity.CommitSet.CommitSetBuilder;
 import com.oscar.gitlabEventCenter.jpa.repository.CommitSetRepository;
@@ -119,6 +120,10 @@ public class GitlabPush2DBHandler implements BaseEventHandler {
      */
     @Override
     public void handle(JSONObject msg) {
+        int projectId = msg.getJSONObject("project").getInt("id");
+        if (Config.isForkProject(projectId)) {
+            return;
+        }
         String commitID = msg.getString("checkout_sha");
         JSONArray commits = msg.getJSONArray("commits");
         String message = "";

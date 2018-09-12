@@ -63,8 +63,10 @@ public class GitlabHistoryCommitsFetcher implements ApplicationListener<ContextR
         // 取得最新添加的commitset 时间
         Date lastCommitDate = getLastCommitDate();
         // 获取所有 group 下的 project id
-        Set<Integer> groupIds = getGroupIds();
-        Set<Integer> projectIds = getProjectIds(groupIds);
+        // modify by yukai 2018/9/12 记录群组内项目ID，用于排除fork项目的commit记录
+        final Set<Integer> groupIds = getGroupIds();
+        final Set<Integer> projectIds = getProjectIds(groupIds);
+        Config.setGroupProjectIds(projectIds);
         // 并发读取 project history commitsets
         ExecutorService executor = Executors.newFixedThreadPool(Config.EXECUTORS_NUM);
         CompletionService<List<CommitSet>> completionService = new ExecutorCompletionService<List<CommitSet>>(executor); 
