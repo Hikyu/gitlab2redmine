@@ -121,7 +121,11 @@ public class GitlabPush2DBHandler implements BaseEventHandler {
     @Override
     public void handle(JSONObject msg) {
         int projectId = msg.getJSONObject("project").getInt("id");
-        if (Config.isForkProject(projectId)) {
+        if (Config.isForkProject(projectId)) {// 忽略fork仓库的提交
+            return;
+        }
+        String ref = msg.getString("ref");
+        if (isSnapBranch(ref)) {// 忽略临时分支的提交
             return;
         }
         String commitID = msg.getString("checkout_sha");
@@ -173,6 +177,16 @@ public class GitlabPush2DBHandler implements BaseEventHandler {
             repository.saveAll(commitSets);
             logger.debug(log.toString());
         }
+    }
+    
+    private boolean isSnapBranch(String ref) {
+        String[] refSplit = ref.split("/");
+        String shortRef = refSplit[refSplit.length - 1].trim();
+        if (shortRef.startsWith("#") || shortRef.startsWith("bug") || 
+                    shortRef.startsWith("Bug") || shortRef.startsWith("BUG")) {
+            return true;
+        }
+        return false;
     }
     
 }
